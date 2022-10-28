@@ -39,6 +39,11 @@ import type ResponseDto from "@/dto/ResponseDto";
     });
 </script>
 <template>
+    <div>
+        <RouterLink to="/login">
+            <button class="btn btn-secondary">Go Back</button>
+        </RouterLink>
+    </div>
     <form id="register-form">
         <div v-if="!submitted">
             <div class="form-group">
@@ -49,7 +54,7 @@ import type ResponseDto from "@/dto/ResponseDto";
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required v-model="user.hashedPassword">
             </div>
-            <button @click="saveUser" class="btn btn-primary">Submit</button>
+            <button @click="saveUser" class="btn btn-primary">Register</button>
         </div>
         <div v-if="submitted">
             <h4>You submitted successfully!</h4>
