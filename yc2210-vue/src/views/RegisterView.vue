@@ -1,37 +1,59 @@
 <script lang="ts">
-/*
-    const registerForm = document.getElementById("register-form");
-    registerForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    let form = e.currentTarget;
-    let url = form.action;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    const jsonData = JSON.stringify(data);
-    console.log(jsonData);
-    let res = fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+    import { defineComponent } from "vue";
+    import CreateUserDto from '@/dto/CreateUserDTO';
+    import RegisterService from '@/services/RegisterService'
+import type ResponseDto from "@/dto/ResponseDto";
+
+    export default defineComponent({
+        name: "register",
+        data() {
+            return {
+                user: {
+                    email: "",
+                    hashedPassword: "" 
+                } as CreateUserDto,
+                submitted: false,
+            };
         },
-        body: jsonData
-    })
-    console.log("submitted");
-})
-*/
+        methods: {
+            saveUser() {
+                let data = {
+                    email: this.user.email,
+                    hashedPassword: this.user.hashedPassword
+                };
+                RegisterService.createUser(data)
+                    .then((response: ResponseDto) => {
+                        this.submitted = true;
+                        console.log(response)
+                    })
+                    .catch((e: Error) => {
+                        console.log(e);
+                    });
+            },
+
+            newUser() {
+                this.submitted = false;
+                this.user = {} as CreateUserDto;
+            }
+        }
+    });
 </script>
 <template>
-    <form id="register-form" method="post" action="http://localhost:8080/User">
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+    <form id="register-form">
+        <div v-if="!submitted">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required v-model="user.email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required v-model="user.hashedPassword">
+            </div>
+            <button @click="saveUser" class="btn btn-primary">Submit</button>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="hashedPassword" placeholder="Password">
+        <div v-if="submitted">
+            <h4>You submitted successfully!</h4>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>
 <style>
