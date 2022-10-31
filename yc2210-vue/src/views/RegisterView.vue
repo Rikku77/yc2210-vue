@@ -34,7 +34,7 @@ export default defineComponent({
                 this.disabled = [false, this.disabled[1]]
             } else{
                 console.log(value);
-                this.emailErrorMessage = 'Invalid Email Address';
+                this.emailErrorMessage = 'Invalid emailaddress';
                 this.disabled = [true, this.disabled[1]]
             }   
         },
