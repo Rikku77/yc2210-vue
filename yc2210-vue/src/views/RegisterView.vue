@@ -34,12 +34,15 @@ export default defineComponent({
 });
 </script>
 <template>
-    <form id="register-form" @submit.prevent>
-        <div>
-            <RouterLink to="/login">
-                <button class="btn btn-secondary">Go Back</button>
-            </RouterLink>
-        </div>
+    <div class="btn-back">
+        <RouterLink to="/login">
+            <button class="btn">
+                <font-awesome-icon class="fa-icon" icon="fa-arrow-left-long" />
+            </button>
+        </RouterLink>
+    </div>
+    <main>
+        <form id="register-form" @submit.prevent>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required v-model="user.email">
@@ -53,6 +56,7 @@ export default defineComponent({
         </div>
         <button @click="saveUser" class="btn btn-primary">Register</button>
     </form>
+    </main>
 </template>
 <style>
 </style>
