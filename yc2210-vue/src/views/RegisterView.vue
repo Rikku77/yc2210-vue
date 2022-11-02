@@ -58,7 +58,8 @@ export default defineComponent({
         saveUser() {
             let user = {
                 email: this.email,
-                hashedPassword: this.password
+                password: this.password,
+                username: this.email.split("@")[0]
             } as CreateUserDto;
             RegisterService.createUser(user)
             .then((response: ResponseDto) => {
@@ -85,12 +86,12 @@ export default defineComponent({
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required v-model="email">
-                <span id="email-span" v-if="emailErrorMessage.length > 0">{{emailErrorMessage}}</span>
+                <span id="email-span" class="error" v-if="emailErrorMessage.length > 0">{{emailErrorMessage}}</span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required v-model="password">
-                <span id="password-span" v-if="passwordErrorMessage.length > 0">{{passwordErrorMessage}}</span>
+                <span id="password-span" class="error" v-if="passwordErrorMessage.length > 0">{{passwordErrorMessage}}</span>
             </div>
             <div class="submitted" v-if="submitted">
                 <p>You submitted successfully!</p>
@@ -100,7 +101,7 @@ export default defineComponent({
     </main>
 </template>
 <style>
-    span {
+    .error {
         color: red;
         font-size: small;
     }
