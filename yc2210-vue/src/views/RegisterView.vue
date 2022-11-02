@@ -32,16 +32,22 @@ export default defineComponent({
             {
                 this.emailErrorMessage = '';
                 this.disabled = [false, this.disabled[1]]
-            } else{
-                console.log(value);
+            } else if(value.length == 0){
+                this.emailErrorMessage = 'Emailaddress is required';
+                this.disabled = [true, this.disabled[1]]
+            }
+            else{
                 this.emailErrorMessage = 'Invalid emailaddress';
                 this.disabled = [true, this.disabled[1]]
             }   
         },
-        validatePassword(value: string){
-            if(value.length < 12 || value.length > 99){
-                console.log(value);
+        validatePassword(value: string){  
+            if((value.length > 0 && value.length < 12) || value.length > 99){
                 this.passwordErrorMessage = 'Invalid password';
+                this.disabled = [this.disabled[1], true]
+            }
+            else if (value.length == 0){
+                this.passwordErrorMessage = 'Password is required';
                 this.disabled = [this.disabled[1], true]
             }
             else {
