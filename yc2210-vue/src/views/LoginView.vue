@@ -1,4 +1,8 @@
 <script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+    name: "login"
+})
   /*
   const loginForm = document.getElementById("login-form");
   loginForm.addEventListener("submit", function(e) {
