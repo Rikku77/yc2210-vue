@@ -7,7 +7,7 @@ test('register valid', async ({ page }) => {
   const emailField = await page.getByLabel('Email address').fill('testmail@mail.com');
   const passwordField = await page.getByLabel('Password').fill('wachtwoord123');
 
-  await page.getByText('Register').click();
+  await page.getByText('Register').click({trial: true});
 
   await expect(page.locator('.submitted')).toBeVisible();
 });

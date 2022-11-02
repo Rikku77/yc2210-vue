@@ -37,13 +37,13 @@ export default defineComponent({
                 this.disabled = [true, this.disabled[1]]
             }
             else{
-                this.emailErrorMessage = 'Invalid emailaddress';
+                this.emailErrorMessage = 'Emailaddress is invalid';
                 this.disabled = [true, this.disabled[1]]
             }   
         },
         validatePassword(value: string){  
             if((value.length > 0 && value.length < 12) || value.length > 99){
-                this.passwordErrorMessage = 'Invalid password';
+                this.passwordErrorMessage = 'Password is invalid';
                 this.disabled = [this.disabled[1], true]
             }
             else if (value.length == 0){
@@ -85,17 +85,17 @@ export default defineComponent({
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required v-model="email">
-                <span v-if="emailErrorMessage.length > 0">{{emailErrorMessage}}</span>
+                <span id="email-span" v-if="emailErrorMessage.length > 0">{{emailErrorMessage}}</span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required v-model="password">
-                <span v-if="passwordErrorMessage.length > 0">{{passwordErrorMessage}}</span>
+                <span id="password-span" v-if="passwordErrorMessage.length > 0">{{passwordErrorMessage}}</span>
             </div>
             <div class="submitted" v-if="submitted">
                 <p>You submitted successfully!</p>
             </div>
-            <button :disabled="!disabled.every(i => i === false)" class="btn btn-primary">Register</button>
+            <button id="submit-button" :disabled="!disabled.every(i => i === false)" class="btn btn-primary">Register</button>
         </form>
     </main>
 </template>
