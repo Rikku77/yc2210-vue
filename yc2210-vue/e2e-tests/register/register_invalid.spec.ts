@@ -6,7 +6,7 @@ test('Register - When emailfield has no at sign, span element should show messag
   await page.goto('http://127.0.0.1:5173/register');
 
   // 2. Fill emailfield with invalid value
-  await page.getByLabel('Email address').fill('testmail.com');
+  await page.getByLabel('Email address').type('testmail.com');
 
   // 3. Check span message
   const expected = 'Emailaddress is invalid';
