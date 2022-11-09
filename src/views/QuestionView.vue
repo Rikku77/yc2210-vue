@@ -1,11 +1,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import QuestionService from '@/services/QuestionService';
+import type QuestionDto from '@/dto/QuestionDto';
 export default defineComponent({
     name: "question",
     data() {
         return {
+            questionData: {} as QuestionDto,
             currentId: this.$route.params.id
         }
+    },
+    created(){
+        QuestionService.getQuestionById(Number(this.$route.params.id))
+        .then(response => this.questionData = response.data)
+        .then(() => console.log(this.questionData));
     }
 })
 </script>
@@ -16,8 +24,8 @@ export default defineComponent({
     </header>
     <main>
         <div class="container p-3 my-3 border">
-        <h2>Question {{ $route.params.id }}</h2>
-        <p>Question description, start with movie question?</p>
+        <h2>Question {{ questionData.id }}</h2>
+        <p>{{ questionData.text }}</p>
         </div>
         
         
