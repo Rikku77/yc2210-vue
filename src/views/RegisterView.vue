@@ -2,7 +2,7 @@
     import { defineComponent } from "vue";
     import type CreateUserDto from '@/dto/CreateUserDTO';
     import RegisterService from '@/services/RegisterService'
-import type ResponseDto from "@/dto/ResponseDto";
+    import type ResponseDto from "@/dto/ResponseDto";
 
 export default defineComponent({
     name: "register",
