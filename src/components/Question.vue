@@ -1,0 +1,18 @@
+<script lang="ts">
+import QuestionDto from '@/dto/QuestionDto';
+
+export default {
+    props:{
+        question: QuestionDto
+    }
+}
+</script>
+<template>
+<div class="container p-3 my-3 border">
+    <h2>Question {{ question?.id }}</h2>
+    <p>{{ question?.text}}</p>
+</div>
+<div class="choices">
+    <button type="button" v-for="qanswer in question?.qanswers" class="btn btn-danger">{{qanswer.text}}</button>
+</div>          
+</template>

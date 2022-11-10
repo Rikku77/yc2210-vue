@@ -27,8 +27,8 @@ const router = createRouter({
       component: LandingView
     },
     {
-      path: '/question/:id',
-      name: 'question',
+      path: '/questions',
+      name: 'questions',
       component: QuestionView
     }
   ]

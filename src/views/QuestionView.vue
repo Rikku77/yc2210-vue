@@ -2,20 +2,24 @@
 import { defineComponent } from "vue";
 import QuestionService from '@/services/QuestionService';
 import type QuestionDto from '@/dto/QuestionDto';
-import type { text } from "@fortawesome/fontawesome-svg-core";
+import QuestionVue from "@/components/Question.vue";
 export default defineComponent({
-    name: "question",
+    name: "questions",
     data() {
         return {
-            questionData: {} as QuestionDto,
-            currentId: this.$route.params.id
-        }
+            questions: [{}] as QuestionDto[],
+            currentQuestion: 1,
+            answers:[{
+                text: String
+            }]
+        };
     },
-    created(){
-        QuestionService.getQuestionById(Number(this.$route.params.id))
-        .then(response => this.questionData = response.data)
-        .then(() => console.log(this.questionData));
-    }
+    created() {
+        QuestionService.getQuestions()
+            .then(response => this.questions = response.data)
+            .then(() => console.log(this.questions));
+    },
+    components: { QuestionVue }
 })
 </script>
 <template>
@@ -24,19 +28,15 @@ export default defineComponent({
         </div>
     </header>
     <main>
-        <div class="container p-3 my-3 border">
-        <h2>Question {{ questionData.id }}</h2>
-        <p>{{ questionData.text }}</p>
-        </div>
-        
-        
-        <div class="choices">
-            <button v-for="{ text } in questionData.qanswers" type="button" class="btn btn-danger">{{ text }}</button>
+        <div v-for="(question, index) in questions" :key="index">
+            <div v-if="question.id == currentQuestion">
+                <QuestionVue :question="question"/>
+            </div>
         </div>
     </main>
     <footer>
-        <button type="button" class="btn btn-outline-secondary">Previous</button>
-        <button type="button" class="btn btn-outline-secondary">Next</button>
+        <button type="button" v-if="currentQuestion > 1" class="btn btn-outline-secondary" @click="currentQuestion--">Previous</button>
+        <button type="button" v-if="currentQuestion < questions.length" class="btn btn-outline-secondary" @click="currentQuestion++">Next</button>
     </footer>
 </template>
 <style>
