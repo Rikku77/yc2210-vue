@@ -2,6 +2,7 @@
 import { defineComponent } from "vue";
 import QuestionService from '@/services/QuestionService';
 import type QuestionDto from '@/dto/QuestionDto';
+import type { text } from "@fortawesome/fontawesome-svg-core";
 export default defineComponent({
     name: "question",
     data() {
@@ -30,10 +31,7 @@ export default defineComponent({
         
         
         <div class="choices">
-            <button type="button" class="btn btn-danger">Antwoord 1</button>
-            <button type="button" class="btn btn-danger">Antwoord 2</button>
-            <button type="button" class="btn btn-danger">Antwoord 3</button>
-            <button type="button" class="btn btn-danger">Antwoord 4</button>
+            <button v-for="{ text } in questionData.qanswers" type="button" class="btn btn-danger">{{ text }}</button>
         </div>
     </main>
     <footer>
