@@ -36,7 +36,7 @@ export default defineComponent({
     </main>
     <footer>
         <button type="button" v-if="currentQuestion > 1" class="btn btn-outline-secondary" @click="currentQuestion--">Previous</button>
-        <button type="button" v-if="currentQuestion < questions.length" class="btn btn-outline-secondary" @click="currentQuestion++">Next</button>
+        <button type="button" v-if="currentQuestion <= questions.length - 1" class="btn btn-outline-secondary" @click="currentQuestion++">Next</button>
     </footer>
 </template>
 <style>
