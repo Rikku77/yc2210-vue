@@ -1,3 +1,4 @@
 export default class AnswerDto {
-    text!: String;
+    answerId!: Number;
+    questionId!: Number;
 }

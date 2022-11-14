@@ -3,6 +3,7 @@ export default class QuestionDto {
     text!: String
     orderNR!: Number
     qanswers!: {
+        id: Number
         text: String
     }[]
 }

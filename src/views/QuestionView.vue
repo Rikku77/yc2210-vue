@@ -1,17 +1,16 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, VueElement } from "vue";
 import QuestionService from '@/services/QuestionService';
 import type QuestionDto from '@/dto/QuestionDto';
 import QuestionVue from "@/components/Question.vue";
+import type AnswerDto from "@/dto/AnswerDto";
 export default defineComponent({
     name: "questions",
     data() {
         return {
             questions: [{}] as QuestionDto[],
             currentQuestion: 1,
-            answers:[{
-                text: String
-            }]
+            answers: [{}] as AnswerDto[]
         };
     },
     created() {
@@ -19,7 +18,25 @@ export default defineComponent({
             .then(response => this.questions = response.data)
             .then(() => console.log(this.questions));
     },
-    components: { QuestionVue }
+    components: { QuestionVue },
+    methods: {
+        addAnswer(value: Number){
+            console.log(value)
+            if(this.answers.find(element => element.questionId == this.currentQuestion) === undefined){
+                this.answers.push({ answerId: value, questionId: this.currentQuestion});
+            }
+            else{
+                let answer = this.answers.find(element => element.questionId == this.currentQuestion);
+                
+                this.answers[answer!.questionId as number - 1].answerId = value
+                this.answers.find(element => {
+                    if(element.questionId == this.currentQuestion){
+                        element.answerId = value;
+                    }
+                })
+            }
+        }
+    }
 })
 </script>
 <template>
@@ -30,7 +47,7 @@ export default defineComponent({
     <main>
         <div v-for="(question, index) in questions" :key="index">
             <div v-if="question.id == currentQuestion">
-                <QuestionVue :question="question"/>
+                <QuestionVue @answerId="addAnswer" :question="question"/>
             </div>
         </div>
     </main>

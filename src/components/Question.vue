@@ -3,8 +3,15 @@ import QuestionDto from '@/dto/QuestionDto';
 
 export default {
     props:{
-        question: QuestionDto
+        question: QuestionDto,
+        selectedAnswerId: Number
+    },
+    methods:{
+        selectAnswer(id: Number){
+            this.$emit('answerId', id)
+        }
     }
+    
 }
 </script>
 <template>
@@ -13,6 +20,6 @@ export default {
     <p>{{ question?.text}}</p>
 </div>
 <div class="choices">
-    <button type="button" v-for="qanswer in question?.qanswers" class="btn btn-danger">{{qanswer.text}}</button>
+    <button type="button" v-for="qanswer in question?.qanswers" @click.prevent="selectAnswer(qanswer.id)" class="btn btn-danger">{{qanswer.text}}</button>
 </div>          
 </template>
