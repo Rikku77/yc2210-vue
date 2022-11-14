@@ -1,4 +1,3 @@
-import type QuestionDto from '@/dto/QuestionDto';
 import http from '@/http-common';
 
 class QuestionService{

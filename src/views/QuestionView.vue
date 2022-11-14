@@ -1,16 +1,19 @@
 <script lang="ts">
-import { defineComponent, VueElement } from "vue";
+import { defineComponent } from "vue";
 import QuestionService from '@/services/QuestionService';
 import type QuestionDto from '@/dto/QuestionDto';
 import QuestionVue from "@/components/Question.vue";
 import type AnswerDto from "@/dto/AnswerDto";
+import AnswerService from "@/services/AnswerService";
+import type ResponseDto from "@/dto/ResponseDto";
 export default defineComponent({
     name: "questions",
     data() {
         return {
             questions: [] as QuestionDto[],
             currentQuestion: 1,
-            answers: [] as AnswerDto[]
+            answers: [] as AnswerDto[],
+            disabled: true
         };
     },
     created() {
@@ -37,6 +40,21 @@ export default defineComponent({
                 })
                 console.log(this.answers);
             }
+
+            if(this.answers.length == this.questions.length){
+                this.disabled = false;
+            }
+        },
+        submitAnswers(){
+            const answerData: Number[] = this.answers.map(x => x.answerId);
+            console.log(answerData);
+            AnswerService.postAnswers(answerData)
+            .then((response: ResponseDto) => {
+                console.log(response)
+            })
+            .catch((e: Error) => {
+                console.log(e);
+            });
         }
     }
 })
@@ -57,6 +75,7 @@ export default defineComponent({
         <button type="button" v-if="currentQuestion > 1" class="btn btn-outline-secondary" @click="currentQuestion--">Previous</button>
         <button type="button" v-if="currentQuestion <= questions.length - 1" class="btn btn-outline-secondary" @click="currentQuestion++">Next</button>
     </footer>
+    <button type="button" v-if="currentQuestion == questions.length" class="btn btn-primary" @click="submitAnswers" :disabled="disabled">Submit</button>
 </template>
 <style>
 
