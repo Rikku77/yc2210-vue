@@ -41,6 +41,10 @@ export default defineComponent({
         <nav class="text-center">
           <RouterLink to="/register">Register</RouterLink>
         </nav>
+
     </form>
+    <RouterLink to="/landing" custom v-slot="{ navigate }">
+      <button type="button" class="btn btn-secondary" @click="navigate" role="link"> Continue as guest </button>
+    </RouterLink>
   </main>
 </template>
