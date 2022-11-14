@@ -8,9 +8,9 @@ export default defineComponent({
     name: "questions",
     data() {
         return {
-            questions: [{}] as QuestionDto[],
+            questions: [] as QuestionDto[],
             currentQuestion: 1,
-            answers: [{}] as AnswerDto[]
+            answers: [] as AnswerDto[]
         };
     },
     created() {
@@ -24,6 +24,7 @@ export default defineComponent({
             console.log(value)
             if(this.answers.find(element => element.questionId == this.currentQuestion) === undefined){
                 this.answers.push({ answerId: value, questionId: this.currentQuestion});
+                console.log(this.answers);
             }
             else{
                 let answer = this.answers.find(element => element.questionId == this.currentQuestion);
@@ -34,6 +35,7 @@ export default defineComponent({
                         element.answerId = value;
                     }
                 })
+                console.log(this.answers);
             }
         }
     }
