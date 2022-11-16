@@ -1,9 +1,12 @@
-import type QuestionDto from '@/dto/QuestionDto';
-import http from '@/http-common';
+import http from '@/http-java';
 
 class QuestionService{
     getQuestionById(id: number){
         return http.get("/Question/" + id);
+    }
+
+    getQuestions(){
+        return http.get("/Question");
     }
 }
 

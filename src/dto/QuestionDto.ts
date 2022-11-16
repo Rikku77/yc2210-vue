@@ -1,10 +1,9 @@
-export default interface QuestionDto {
-    "id": number,
-    "text": string,
-    "orderNR": number,
-    "qanswers":
-    {
-        "id": number,
-        "text": string
+export default class QuestionDto {
+    id!: Number
+    text!: String
+    orderNR!: Number
+    qanswers!: {
+        id: Number
+        text: String
     }[]
 }

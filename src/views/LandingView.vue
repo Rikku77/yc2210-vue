@@ -15,7 +15,9 @@ export default defineComponent({
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, amet totam! Ut accusamus est voluptates quaerat beatae nihil, mollitia deleniti quo, corporis qui incidunt, dolor aliquid quod dignissimos perferendis animi?</p>
     </main>
     <footer id="footerN">
-        <button type="button" class="btn btn-outline-secondary">Call to action</button>
+        <RouterLink class="container" to="/questions" custom v-slot="{ navigate }">
+            <button type="button" class="btn btn-outline-secondary" @click="navigate" role="link">Call to action</button>
+        </RouterLink>
     </footer>
 </template>
 <style>
