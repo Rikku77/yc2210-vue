@@ -1,4 +1,4 @@
-import http from '@/http-common';
+import http from '@/http-java';
 
 class QuestionService{
     getQuestionById(id: number){

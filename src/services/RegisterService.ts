@@ -1,5 +1,5 @@
 import type CreateUserDto from '@/dto/CreateUserDTO';
-import http from '@/http-common';
+import http from '@/http-java';
 
 class RegisterService {
 
