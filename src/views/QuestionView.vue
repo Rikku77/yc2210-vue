@@ -51,6 +51,7 @@ export default defineComponent({
             AnswerService.postAnswers(answerData)
             .then((response: ResponseDto) => {
                 console.log(response)
+                this.$router.push("filters")
             })
             .catch((e: Error) => {
                 console.log(e);
