@@ -1,8 +1,23 @@
 <script lang="ts">
+import type GenreDto from '@/dto/GenreDto';
+import GenreService from '@/services/GenreService';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: "filters"
+    name: "filters",
+    data() {
+        return {
+            genres: [] as GenreDto[],
+            age_rating: Number,
+            excluded_genres: [],
+            required_genres: []
+        }
+    },
+    created(){
+        GenreService.getGenres()
+            .then(response => this.genres = response.data)
+            .then(() => console.log(this.genres));
+    }
 })
 </script>
 
@@ -21,19 +36,9 @@ export default defineComponent({
                         <span class="caret"></span> 
                     </button>
                     <ul @click.stop="" class="dropdown-menu">
-                        <li>
+                        <li v-for="genre in genres">
                             <label class="dropdown-label">
-                                <input type="checkbox"> Genre 1
-                            </label>
-                        </li>
-                        <li>
-                            <label class="dropdown-label">
-                                <input type="checkbox"> Genre 2
-                            </label>
-                        </li>
-                        <li>
-                            <label class="dropdown-label">
-                                <input type="checkbox"> Genre 3
+                                <input type="checkbox"> {{ genre.genre_text }}
                             </label>
                         </li>
                     </ul>
