@@ -42,8 +42,8 @@ export default defineComponent({
                     </button>
                     <ul @click.stop="" class="dropdown-menu">
                         <li v-for="(genre, index) in genres" :key="index">
-                            <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :id="'checkbox'" :value="genre">
-                            <label class="dropdown-label" :for="'checkbox' + index">
+                            <label class="dropdown-label">
+                                <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :value="genre"/>
                                 {{ genre.genre_text }}
                             </label>
                         </li>
