@@ -17,6 +17,11 @@ export default defineComponent({
         GenreService.getGenres()
             .then(response => this.genres = response.data)
             .then(() => console.log(this.genres));
+    },
+    methods: {
+        loggenres(){
+            console.log(this.excluded_genres);
+        }
     }
 })
 </script>
@@ -36,15 +41,16 @@ export default defineComponent({
                         <span class="caret"></span> 
                     </button>
                     <ul @click.stop="" class="dropdown-menu">
-                        <li v-for="genre in genres">
-                            <label class="dropdown-label">
-                                <input type="checkbox"> {{ genre.genre_text }}
+                        <li v-for="(genre, index) in genres" :key="index">
+                            <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :id="'checkbox'" :value="genre">
+                            <label class="dropdown-label" :for="'checkbox' + index">
+                                {{ genre.genre_text }}
                             </label>
                         </li>
                     </ul>
                 </div>
+                <p>{{excluded_genres}}</p>
             </div>
-            <label></label>
         </div>
     </main>
 </template>
@@ -60,9 +66,5 @@ export default defineComponent({
 
 .dropdown-label{
     color: black;
-}
-
-input[type="checkbox"] {
-    margin-right: .5em;
 }
 </style>
