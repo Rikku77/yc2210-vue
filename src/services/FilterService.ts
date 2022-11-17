@@ -3,7 +3,7 @@ import http from '@/http-python'
 
 class FilterService {
     postFilter(filter: FilterDto){
-        return http.post('/filter_include', filter);
+        return http.post('/filter_movies', filter);
     }
 }
 

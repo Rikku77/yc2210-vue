@@ -40,6 +40,7 @@ export default defineComponent({
                 incl_group: this.required_genres
             } as unknown as FilterDto;
 
+            console.log(filter.excl_genres);
             FilterService.postFilter(filter)
             .then((response: ResponseDto) => {
                 console.log(response)
@@ -80,7 +81,7 @@ export default defineComponent({
                     <ul @click.stop="" class="dropdown-menu">
                         <li v-for="(genre, index) in genres" :key="index">
                             <label class="dropdown-label">
-                                <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :value="genre"/>
+                                <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :value="genre.id"/>
                                 {{ genre.genre_text }}
                             </label>
                         </li>
@@ -98,7 +99,7 @@ export default defineComponent({
                     <ul @click.stop="" class="dropdown-menu">
                         <li v-for="(genre, index) in genres" :key="index">
                             <label class="dropdown-label">
-                                <input class="dropdown-input" v-model="required_genres" type="checkbox" :value="genre"/>
+                                <input class="dropdown-input" v-model="required_genres" type="checkbox" :value="genre.id"/>
                                 {{ genre.genre_text }}
                             </label>
                         </li>
