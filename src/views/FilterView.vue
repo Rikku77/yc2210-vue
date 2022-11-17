@@ -2,6 +2,7 @@
 import type AgeDto from '@/dto/AgeDto';
 import type FilterDto from '@/dto/FilterDto';
 import type GenreDto from '@/dto/GenreDto';
+import type MovieResultDto from '@/dto/MovieResultDto';
 import type ResponseDto from '@/dto/ResponseDto';
 import AgeService from '@/services/AgeService';
 import FilterService from '@/services/FilterService';
@@ -46,7 +47,9 @@ export default defineComponent({
             console.log(filter.excl_genres);
             FilterService.postFilter(filter)
             .then((response: ResponseDto) => {
-                console.log(response)
+                localStorage.movie_results = JSON.stringify(response.data)
+                console.log(response.data)
+                this.$router.push("results")
             })
             .catch((e: Error) => {
                 console.log(e);
@@ -92,7 +95,7 @@ export default defineComponent({
                 </div>
                 <p>{{excluded_genres}}</p>
             </div>
-            {{incl_groups}}
+            <p>{{incl_groups}}</p>
         </div>
         <div class="container">
             <button type="button" class="btn btn-center btn-primary" @click="submitFilter">Submit</button>
