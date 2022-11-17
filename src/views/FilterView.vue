@@ -108,7 +108,7 @@ export default defineComponent({
             </div>
         </div>
         <div class="container">
-            <button type="button" class="btn center btn-primary" @click="submitFilter">Submit</button>
+            <button type="button" class="btn btn-center btn-primary" @click="submitFilter">Submit</button>
         </div>
     </main>
 </template>
@@ -128,10 +128,5 @@ export default defineComponent({
 
     .input {
         color: white;
-    }
-    .center {
-        margin: 0;
-        position: absolute;
-        left: 50%;
     }
 </style>

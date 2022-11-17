@@ -66,7 +66,7 @@ export default defineComponent({
         </div>
     </header>
     <main>
-        <div v-for="(question, index) in questions" :key="index">
+        <div class="container" v-for="(question, index) in questions" :key="index">
             <div v-if="question.id == currentQuestion">
                 <QuestionVue @answerId="addAnswer" :question="question"/>
             </div>
@@ -76,7 +76,7 @@ export default defineComponent({
         <button type="button" v-if="currentQuestion > 1" class="btn btn-outline-secondary" @click="currentQuestion--">Previous</button>
         <button type="button" v-if="currentQuestion <= questions.length - 1" class="btn btn-outline-secondary" @click="currentQuestion++">Next</button>
     </footer>
-    <button type="button" v-if="currentQuestion == questions.length" class="btn btn-primary" @click="submitAnswers" :disabled="disabled">Submit</button>
+    <button type="button" v-if="currentQuestion == questions.length" class="btn btn-center btn-primary" @click="submitAnswers" :disabled="disabled">Submit</button>
 </template>
 <style>
 

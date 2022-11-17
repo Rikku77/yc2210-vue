@@ -82,3 +82,9 @@ footer .btn {
   color: white;
   border-color: white;
 }
+
+.btn-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+}
