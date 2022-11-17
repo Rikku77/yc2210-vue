@@ -1,6 +1,6 @@
 export default class MovieResultDto{
     id!: Number;
     plot!: String;
-    poster!: String;
+    poster!: string;
     title!: String;
 } 
