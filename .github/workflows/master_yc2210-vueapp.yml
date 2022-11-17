@@ -52,7 +52,7 @@ jobs:
         continue-on-error: false
         working-directory: testing
         run: |
-          npx playwright test e2e --reporter=html --config playwright.config.js
+          npx playwright test
 
   deploy:
     runs-on: ubuntu-latest
