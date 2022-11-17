@@ -1,7 +1,10 @@
 <script lang="ts">
 import type AgeDto from '@/dto/AgeDto';
+import type FilterDto from '@/dto/FilterDto';
 import type GenreDto from '@/dto/GenreDto';
+import type ResponseDto from '@/dto/ResponseDto';
 import AgeService from '@/services/AgeService';
+import FilterService from '@/services/FilterService';
 import GenreService from '@/services/GenreService';
 import { defineComponent } from 'vue';
 
@@ -26,6 +29,27 @@ export default defineComponent({
         AgeService.getAges()
             .then(response => this.ages = response.data)
             .then(() => console.log(this.ages));
+    },
+    methods: {
+        submitFilter(){
+            console.log("Submitted")
+            let filter = {
+                rating: this.selected_rating,
+                min_age: this.selected_age,
+                excl_genres: this.excluded_genres,
+                incl_group: this.required_genres
+            } as unknown as FilterDto;
+
+            console.log(filter.excl_genres);
+            FilterService.postFilter(filter)
+            .then((response: ResponseDto) => {
+                console.log(response)
+            })
+            .catch((e: Error) => {
+                console.log(e);
+            });
+            
+        }
     }
 })
 </script>
@@ -57,7 +81,7 @@ export default defineComponent({
                     <ul @click.stop="" class="dropdown-menu">
                         <li v-for="(genre, index) in genres" :key="index">
                             <label class="dropdown-label">
-                                <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :value="genre"/>
+                                <input class="dropdown-input" v-model="excluded_genres" type="checkbox" :value="genre.id"/>
                                 {{ genre.genre_text }}
                             </label>
                         </li>
@@ -75,7 +99,7 @@ export default defineComponent({
                     <ul @click.stop="" class="dropdown-menu">
                         <li v-for="(genre, index) in genres" :key="index">
                             <label class="dropdown-label">
-                                <input class="dropdown-input" v-model="required_genres" type="checkbox" :value="genre"/>
+                                <input class="dropdown-input" v-model="required_genres" type="checkbox" :value="genre.id"/>
                                 {{ genre.genre_text }}
                             </label>
                         </li>
@@ -83,6 +107,9 @@ export default defineComponent({
                 </div>
                 <p>{{required_genres}}</p>
             </div>
+        </div>
+        <div class="container">
+            <button type="button" class="btn btn-center btn-primary" @click="submitFilter">Submit</button>
         </div>
     </main>
 </template>
