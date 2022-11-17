@@ -18,10 +18,12 @@ export default defineComponent({
             selected_rating: null,
             selected_age: null,
             excluded_genres: [],
-            required_genres: []
+            incl_groups: []
         }
     },
     created(){
+        this.incl_groups = localStorage.genres
+        localStorage.removeItem('genres')
         GenreService.getGenres()
             .then(response => this.genres = response.data)
             .then(() => console.log(this.genres));
@@ -29,6 +31,7 @@ export default defineComponent({
         AgeService.getAges()
             .then(response => this.ages = response.data)
             .then(() => console.log(this.ages));
+
     },
     methods: {
         submitFilter(){
@@ -37,7 +40,7 @@ export default defineComponent({
                 rating: this.selected_rating,
                 min_age: this.selected_age,
                 excl_genres: this.excluded_genres,
-                incl_group: this.required_genres
+                incl_group: this.incl_groups
             } as unknown as FilterDto;
 
             console.log(filter.excl_genres);
@@ -89,24 +92,7 @@ export default defineComponent({
                 </div>
                 <p>{{excluded_genres}}</p>
             </div>
-            <div>
-                <p>4. Zijn er genres die vereist zijn?</p>
-                <div class="btn-group dropdown-filter">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Selecteer Genres
-                        <span class="caret"></span> 
-                    </button>
-                    <ul @click.stop="" class="dropdown-menu">
-                        <li v-for="(genre, index) in genres" :key="index">
-                            <label class="dropdown-label">
-                                <input class="dropdown-input" v-model="required_genres" type="checkbox" :value="genre.id"/>
-                                {{ genre.genre_text }}
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <p>{{required_genres}}</p>
-            </div>
+            {{incl_groups}}
         </div>
         <div class="container">
             <button type="button" class="btn btn-center btn-primary" @click="submitFilter">Submit</button>
