@@ -50,7 +50,8 @@ export default defineComponent({
             console.log(answerData);
             AnswerService.postAnswers(answerData)
             .then((response: ResponseDto) => {
-                console.log(response)
+                console.log(response.data.genres)
+                localStorage.genres = response.data.genres
                 this.$router.push("filters")
             })
             .catch((e: Error) => {
