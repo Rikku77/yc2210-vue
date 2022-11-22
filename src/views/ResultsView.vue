@@ -15,9 +15,12 @@ import type RecipeDto from '@/dto/RecipeDto';
         created(){
             this.movie_results = JSON.parse(localStorage.movie_results);
 
-            for(let i = 0; i< 3; i++){
+            for(let i = 0; i < 3; i++){
                 RecipeService.getRandomRecipe()
-                .then(response => this.recipe_results.push(response.data));
+                .then(response => this.recipe_results.push(response.data[0]))
+                .catch((e: Error) => {
+                    console.log(e);
+                });
             }
 
             console.log(this.recipe_results)
@@ -35,15 +38,24 @@ import type RecipeDto from '@/dto/RecipeDto';
     <main>
         <div>
             <h1 class="title-header">Your 3 selected movies</h1>
-            <div class="movie-list">
-                <div class="movie-container" v-for="movie in movie_results">
+            <div class="row" v-for="movie in movie_results">
+                <div class="col-4">
                     <img v-bind:src=movie.poster class="image">
-                    <h2>{{movie.title}}</h2>
+                </div>
+                <div class="col-8">
+                    <h2 class="text-header">{{movie.title}}</h2>
+                    <p>Hier komt het plot</p>
                 </div>
             </div>
             <h1 class="title-header">Your 3 selected recipes</h1>
-            <div class="recipe-list">
-
+            <div class="row" v-for="recipe in recipe_results">
+                <div class="col-4">
+                    <img v-bind:src=recipe.img class="image">
+                </div>
+                <div class="col-8">
+                    <h2 class="text-header">{{recipe.titel_x}}</h2>
+                    <p>Hier komt het recept</p>
+                </div>
             </div>
         </div>
     </main>
@@ -51,8 +63,12 @@ import type RecipeDto from '@/dto/RecipeDto';
 </template>
 <style>
 
+.text-header{
+    margin-top: 0px;
+}
+
 .title-header{
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .movie-list{

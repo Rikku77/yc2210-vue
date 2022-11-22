@@ -22,5 +22,5 @@ export default class RecipeDto {
     titel_y!: String;
     ingredienten!: String;
     bereidings_stappen!: String;
-    img!: String;
+    img!: string;
 }
