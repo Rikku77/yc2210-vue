@@ -37,24 +37,23 @@ import type RecipeDto from '@/dto/RecipeDto';
     </header>
     <main>
         <div>
-            <h1 class="title-header">Your 3 selected movies</h1>
+            <h1 class="title-header">Jouw 3 geselecteerde films</h1>
             <div class="row" v-for="movie in movie_results">
                 <div class="col-4">
                     <img v-bind:src=movie.poster class="image">
                 </div>
                 <div class="col-8">
                     <h2 class="text-header">{{movie.title}}</h2>
-                    <p>Hier komt het plot</p>
+                    <p>{{movie.plot}}</p>
                 </div>
             </div>
-            <h1 class="title-header">Your 3 selected recipes</h1>
+            <h1 class="title-header">Jouw 3 geselecteerde recepten</h1>
             <div class="row" v-for="recipe in recipe_results">
                 <div class="col-4">
                     <img v-bind:src=recipe.img class="image">
                 </div>
                 <div class="col-8">
                     <h2 class="text-header">{{recipe.titel_x}}</h2>
-                    <p>Hier komt het recept</p>
                 </div>
             </div>
         </div>
