@@ -68,14 +68,12 @@ export default defineComponent({
                 <div class="input" v-for="(element, index) in ratings" :key="index">
                     <input type="radio" v-model="selected_rating" :value="element"/> {{ element }}
                 </div>
-                <p> selected rating: {{ selected_rating }}</p>
             </div>
             <div>
                 <p>2. Op welke leeftijd wil je filteren?</p>
                 <div class="input" v-for="(element, index) in ages" :key="index">
                     <input type="radio" v-model="selected_age" :value="element.min_age"/> {{ element.min_age }} +
                 </div>
-                <p>selected age: {{ selected_age }}</p>
             </div>
             <div>
                 <p>3. Zijn er genres die je niet wilt zien?</p>
@@ -93,9 +91,7 @@ export default defineComponent({
                         </li>
                     </ul>
                 </div>
-                <p>{{excluded_genres}}</p>
             </div>
-            <p>{{incl_groups}}</p>
         </div>
         <div class="container">
             <button type="button" class="btn btn-center btn-primary" @click="submitFilter">Submit</button>
