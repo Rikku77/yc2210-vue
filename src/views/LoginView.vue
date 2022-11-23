@@ -1,8 +1,30 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+  import { defineComponent } from "vue";
+  import type UserLoginDTO from '@/dto/LoginUserDTO';
+  import LoginService from "@/services/LoginService";
+  import { RouterLink } from "vue-router";
+import type ResponseDto from "@/dto/ResponseDto";
 export default defineComponent({
-    name: "login"
-})
+    name: "login",
+    data() {
+      return {
+        email:"",
+        password:""
+      };
+    },
+    methods: {
+      loginUser() {
+        let user = {
+          email: this.email,
+          password: this.password
+        } as UserLoginDTO;
+        LoginService.loginUser(user)
+        .then((response: ResponseDto) => {
+          console.log(response)
+        })
+      }
+    }
+  })
   /*
   const loginForm = document.getElementById("login-form");
   loginForm.addEventListener("submit", function(e) {
@@ -24,18 +46,21 @@ export default defineComponent({
   console.log("submitted")
 })
 */
+
+
+
 </script>
 
 <template>
   <main>
-    <form id="login-form" method="post" action="http://localhost:8080/User">
+    <form id="login-form" @submit.prevent="loginUser">
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required v-model="email">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="hashedPassword" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="hashedPassword" placeholder="Password" required v-model="password">
         </div>
         <button type="submit" class="btn btn-primary">login</button>
         <nav class="text-center">
