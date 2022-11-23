@@ -25,6 +25,6 @@ export default {
 </template>
 <style>
     .btn-danger:focus{
-        background: rgb(31, 31, 130);
+        background: rgb(6, 6, 68);
     }
 </style>
