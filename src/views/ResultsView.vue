@@ -31,7 +31,7 @@ import type RecipeDto from '@/dto/RecipeDto';
 <template>
     <header>
         <div class="NnG-logo-name d-flex" id="headerN">
-            <img src="https://via.placeholder.com/50" alt="picture">
+            <img class="ng-logo" src="@/assets/nglogo.png" alt="picture">
             <h1>Netflix & Grill</h1>
         </div>
     </header>
