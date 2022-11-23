@@ -12,7 +12,7 @@ export default defineComponent({
         </div>
     </header>
     <main>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, amet totam! Ut accusamus est voluptates quaerat beatae nihil, mollitia deleniti quo, corporis qui incidunt, dolor aliquid quod dignissimos perferendis animi?</p>
+        <p>Welkom bij Netflix & Grill. Er volgt een lijst aan vragen die je kunt beantwoorden. Op basis van deze antwoorden zal er een suggestie worden gegeven voor 3 films en recepten</p>
     </main>
     <footer id="footerN">
         <RouterLink class="container" to="/questions" custom v-slot="{ navigate }">

@@ -61,6 +61,12 @@ export default defineComponent({
 </script>
 
 <template>
+    <header>
+        <div class="NnG-logo-name d-flex" id="headerN">
+            <img src="https://via.placeholder.com/50" alt="picture">
+            <h1>Netflix & Grill</h1>
+        </div>
+    </header>
     <main>
         <div class="container p-3 my-3 border">
             <div>
