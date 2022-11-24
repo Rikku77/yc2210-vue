@@ -4,5 +4,5 @@ export default class FilterDto{
     rating!: Number;
     min_age!: Number;
     excl_genres!: []
-    incl_group!: []
+    incl_groups!: []
 }
