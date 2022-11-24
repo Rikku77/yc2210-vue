@@ -64,6 +64,8 @@ export default defineComponent({
 <template>
     <header>
         <div class="NnG-logo-name d-flex" id="headerN">
+            <img class="ng-logo" src="@/assets/nglogo.png" alt="picture">
+            <h1>Netflix & Grill</h1>
         </div>
     </header>
     <main>

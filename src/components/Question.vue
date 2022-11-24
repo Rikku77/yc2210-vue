@@ -23,3 +23,8 @@ export default {
     <button type="button" v-for="qanswer in question?.qanswers" @click.prevent="selectAnswer(qanswer.id)" class="btn btn-danger">{{qanswer.text}}</button>
 </div>          
 </template>
+<style>
+    .btn-danger:focus{
+        background: rgb(6, 6, 68);
+    }
+</style>

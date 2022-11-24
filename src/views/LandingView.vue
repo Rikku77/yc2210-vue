@@ -7,12 +7,12 @@ export default defineComponent({
 <template>
     <header>
         <div class="NnG-logo-name d-flex" id="headerN">
-            <img src="https://via.placeholder.com/50" alt="picture">
+            <img class="ng-logo" src="@/assets/nglogo.png" alt="picture">
             <h1>Netflix & Grill</h1>
         </div>
     </header>
     <main>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, amet totam! Ut accusamus est voluptates quaerat beatae nihil, mollitia deleniti quo, corporis qui incidunt, dolor aliquid quod dignissimos perferendis animi?</p>
+        <p>Welkom bij Netflix & Grill. Er volgt een lijst aan vragen die je kunt beantwoorden. Op basis van deze antwoorden zal er een suggestie worden gegeven voor 3 films en recepten</p>
     </main>
     <footer id="footerN">
         <RouterLink class="container" to="/questions" custom v-slot="{ navigate }">
@@ -20,6 +20,3 @@ export default defineComponent({
         </RouterLink>
     </footer>
 </template>
-<style>
-
-</style>
